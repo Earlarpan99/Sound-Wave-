@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sound Wave | Dashboard</title>
+    <meta
+      name="description"
+      content="Sound Wave dashboard showing available batches and schedule information."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-mark">
+            <span class="brand-dot"></span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Sound</span>
+            <span class="brand-sub">Wave</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <div class="nav-section-label">Navigation menu</div>
+
+          <div class="nav-section">
+            <a class="nav-item active" href="#">
+              <span class="nav-icon dashboard-icon" aria-hidden="true"></span>
+              <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="#">
+              <span class="nav-icon material-icon" aria-hidden="true"></span>
+              <span>Assignments</span>
+            </a>
+            <a class="nav-item" href="#">
+              <span class="nav-icon timetable-icon" aria-hidden="true"></span>
+              <span>Announcements</span>
+            </a>
+            <a class="nav-item" href="#">
+              <span class="nav-icon societies-icon" aria-hidden="true"></span>
+              <span>Videos</span>
+            </a>
+            <a class="nav-item" href="#">
+              <span class="nav-icon events-icon" aria-hidden="true"></span>
+              <span>Files</span>
+            </a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="main-panel batch-page">
+        <header class="topbar">
+          <nav class="header-actions" aria-label="Primary actions">
+            <a href="#" class="header-action">Chat</a>
+            <a href="#" class="header-action">Call</a>
+            <a href="#" class="header-action">Account Settings</a>
+          </nav>
+
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span>Search courses, PYQs, societies...</span>
+            <kbd>/</kbd>
+          </div>
+        </header>
+
+        <div class="batch-header">
+          <h1>Batches</h1>
+          <div class="batch-top-actions">
+            <a class="small-action" href="#">Back to Home</a>
+            <a class="small-action" href="#">Create Batch</a>
+            <a class="small-action" href="#">Delete Batches</a>
+          </div>
+        </div>
+
+        <section class="batch-grid" aria-label="Batches overview">
+          <a class="batch-card batch-link" href="batch.html?id=design-thinking">
+            <div class="batch-meta">
+              <span>Batch 2024</span>
+              <span>42 students</span>
+            </div>
+            <h3>Design Thinking</h3>
+            <p>Creative problem-solving labs, weekly critiques, and collaborative studio sessions.</p>
+            <span class="batch-pill">Active</span>
+          </a>
+
+          <a class="batch-card batch-link" href="batch.html?id=product-strategy">
+            <div class="batch-meta">
+              <span>Batch 2025</span>
+              <span>38 students</span>
+            </div>
+            <h3>Product Strategy</h3>
+            <p>Roadmap planning, sprint reviews, and hands-on case studies for modern product teams.</p>
+            <span class="batch-pill">Live</span>
+          </a>
+
+          <a class="batch-card batch-link" href="batch.html?id=frontend-studio">
+            <div class="batch-meta">
+              <span>Batch 2026</span>
+              <span>54 students</span>
+            </div>
+            <h3>Frontend Studio</h3>
+            <p>Interface design, interaction systems, and UI implementation workshops across teams.</p>
+            <span class="batch-pill">Synced</span>
+          </a>
+
+          <a class="batch-card batch-link" href="batch.html?id=marketing-lab">
+            <div class="batch-meta">
+              <span>Batch 2024</span>
+              <span>30 students</span>
+            </div>
+            <h3>Marketing Lab</h3>
+            <p>Audience research, content systems, and campaign planning for community-led growth.</p>
+            <span class="batch-pill">Open</span>
+          </a>
+
+          <a class="batch-card batch-link" href="batch.html?id=community-music">
+            <div class="batch-meta">
+              <span>Batch 2025</span>
+              <span>46 students</span>
+            </div>
+            <h3>Community Music</h3>
+            <p>Performance workflows, live set planning, and audience-building exercises for creators.</p>
+            <span class="batch-pill">Active</span>
+          </a>
+
+          <a class="batch-card batch-link" href="batch.html?id=startup-sprint">
+            <div class="batch-meta">
+              <span>Batch 2026</span>
+              <span>49 students</span>
+            </div>
+            <h3>Startup Sprint</h3>
+            <p>Lean validation, pitching strategies, and founder coaching for early-stage ideas.</p>
+            <span class="batch-pill">Review</span>
+          </a>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

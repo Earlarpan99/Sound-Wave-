@@ -1,2 +1,3 @@
-#Sound-Wave-
+# Sound Wave
+
 Where Music Meets Connection
