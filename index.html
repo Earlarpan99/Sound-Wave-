@@ -16,12 +16,88 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="landing-body">
-    <main class="landing-page">
-      <h1 class="brand-title">Sound-Wave-</h1>
-      <div class="brand-rule"></div>
-      <p class="brand-tagline">#Sound-Wave- Where Music Meets Connection</p>
-    </main>
+  <body>
+    <div class="app-shell app-shell-no-sidebar">
+      <main class="main-panel list-panel">
+        <header class="topbar list-topbar">
+          <nav class="header-actions" aria-label="Primary actions">
+            <a href="#" class="header-action">Chat</a>
+            <a href="#" class="header-action">Call</a>
+            <a href="#" class="header-action">Account Settings</a>
+          </nav>
+
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span>Search courses, PYQs, societies...</span>
+            <kbd>/</kbd>
+          </div>
+        </header>
+
+        <section class="batch-list-shell" aria-label="Batch listing">
+          <div class="list-header-row">
+            <h2>Batches (1)</h2>
+            <div class="search-wrap">
+              <input type="text" aria-label="Quick search by name" placeholder="Quick search by name" />
+              <span class="mini-search">⌕</span>
+            </div>
+          </div>
+
+          <div class="toggle-tabs" aria-label="Batch status filters">
+            <button class="tab active" type="button">Active</button>
+            <button class="tab" type="button">InActive</button>
+          </div>
+
+          <a class="batch-list-card batch-list-link" href="batch.html" aria-label="Open batch G6 B1 Cambridge HS 2026-27">
+            <h3>G6 B1_Cambridge HS_2026-27</h3>
+            <p class="batch-sub">GRADE 6 | IGCSE</p>
+            <p class="batch-code">G6 B1</p>
+
+            <div class="batch-tags">
+              <span>Hindi</span>
+              <span>Social Studies</span>
+              <span>Global Perspective</span>
+              <span>French</span>
+              <span>Maths</span>
+              <span>ICT</span>
+              <span>Science</span>
+              <span>Marathi</span>
+              <span>Arts</span>
+              <span>English</span>
+              <span>Financial Literacy</span>
+            </div>
+
+            <div class="batch-foot">
+              <div class="avatar-stack">
+                <div class="avatar avatar-main">AR</div>
+                <div class="avatar avatar-badge">+43</div>
+              </div>
+            </div>
+          </a>
+
+          <div class="data-footer">
+            <div class="rows-wrap">
+              <span>Rows per page</span>
+              <select aria-label="Rows per page">
+                <option selected>16</option>
+                <option>32</option>
+                <option>64</option>
+              </select>
+            </div>
+
+            <div class="pager">
+              <span>API: 10 ms</span>
+              <div class="pager-controls">
+                <button type="button">Previous</button>
+                <button type="button" class="pager-arrow">«</button>
+                <button type="button" class="page-current-btn">1</button>
+                <button type="button" class="pager-arrow">»</button>
+                <button type="button">Next</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <script src="script.js"></script>
   </body>
