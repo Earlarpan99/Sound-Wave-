@@ -471,6 +471,11 @@ button, input {
   padding: 18px 18px 0 18px;
 }
 
+.batch-back-link {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
 .batch-overview-card,
 .batch-schedule-card,
 .panel-box {
