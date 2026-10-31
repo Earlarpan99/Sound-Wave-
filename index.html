@@ -18,80 +18,109 @@
   </head>
   <body>
     <div class="app-shell app-shell-no-sidebar">
-      <main class="main-panel list-panel">
-        <header class="topbar list-topbar">
-          <div class="search-box">
-            <span class="search-icon" aria-hidden="true">⌕</span>
-            <span>Search courses, PYQs, societies...</span>
-            <kbd>/</kbd>
-          </div>
-        </header>
+      <main class="main-panel list-panel batches-page">
+        <section class="batch-list-shell" aria-labelledby="batches-title" data-batches-page>
+          <header class="batches-heading">
+            <div class="batches-heading-copy">
+              <p class="batches-eyebrow">Learning workspace</p>
+              <h1 id="batches-title">Batches</h1>
+              <p class="batches-description">Browse learning groups, subjects, and students.</p>
+            </div>
+            <div class="batches-total" aria-live="polite">
+              <strong data-total-batches>1</strong>
+              <span>total batch</span>
+            </div>
+          </header>
 
-        <section class="batch-list-shell" aria-label="Batch listing">
-          <div class="list-header-row">
-            <h2>Batches (1)</h2>
-            <div class="search-wrap">
-              <input type="text" aria-label="Quick search by name" placeholder="Quick search by name" />
-              <span class="mini-search">⌕</span>
+          <div class="batch-toolbar">
+            <div class="toggle-tabs" role="tablist" aria-label="Filter batches by status">
+              <button class="tab active" id="active-tab" type="button" role="tab" aria-selected="true" aria-controls="batch-results" tabindex="0" data-status="active">
+                <span>Active</span><span class="tab-count" data-count="active">1</span>
+              </button>
+              <button class="tab" id="inactive-tab" type="button" role="tab" aria-selected="false" aria-controls="batch-results" tabindex="-1" data-status="inactive">
+                <span>Inactive</span><span class="tab-count" data-count="inactive">0</span>
+              </button>
+            </div>
+
+            <div class="batch-search-field">
+              <label class="visually-hidden" for="batch-search">Search batches by name</label>
+              <span class="batch-search-icon" aria-hidden="true">⌕</span>
+              <input id="batch-search" type="text" placeholder="Search batches by name" autocomplete="off" />
+              <button class="clear-search" type="button" aria-label="Clear search" title="Clear search" hidden>&times;</button>
+              <kbd class="search-shortcut" aria-hidden="true">/</kbd>
             </div>
           </div>
 
-          <div class="toggle-tabs" aria-label="Batch status filters">
-            <button class="tab active" type="button">Active</button>
-            <button class="tab" type="button">InActive</button>
+          <p class="results-summary" id="batch-results-summary" aria-live="polite"></p>
+
+          <div class="batch-results" id="batch-results" role="tabpanel" aria-labelledby="active-tab" aria-busy="true">
+            <div class="batch-skeleton" aria-hidden="true">
+              <span class="skeleton-line skeleton-title"></span>
+              <span class="skeleton-line skeleton-meta"></span>
+              <span class="skeleton-line skeleton-meta-short"></span>
+              <div class="skeleton-badges"><i></i><i></i><i></i><i></i></div>
+              <span class="skeleton-line skeleton-footer"></span>
+            </div>
           </div>
 
-          <a class="batch-list-card batch-list-link" href="batch.html" aria-label="Open batch G6 B1 Cambridge HS 2026-27">
-            <h3>G6 B1_Cambridge HS_2026-27</h3>
-            <p class="batch-sub">GRADE 6 | IGCSE</p>
-            <p class="batch-code">G6 B1</p>
+          <div class="batch-empty-state" id="batch-empty-state" role="status" hidden>
+            <span class="empty-state-mark" aria-hidden="true">⌕</span>
+            <strong data-empty-title>No batches found</strong>
+            <p data-empty-description>Try a different search or status filter.</p>
+            <button class="reset-search" type="button" hidden>Clear search</button>
+          </div>
 
-            <div class="batch-tags">
-              <span>Hindi</span>
-              <span>Social Studies</span>
-              <span>Global Perspective</span>
-              <span>French</span>
-              <span>Maths</span>
-              <span>ICT</span>
-              <span>Science</span>
-              <span>Marathi</span>
-              <span>Arts</span>
-              <span>English</span>
-              <span>Financial Literacy</span>
-            </div>
+          <div class="batch-load-error" id="batch-load-error" role="alert" hidden>
+            <strong>We couldn’t load batches.</strong>
+            <p>Please try again.</p>
+            <button class="reset-search" type="button" data-retry>Retry</button>
+          </div>
 
-            <div class="batch-foot">
-              <div class="avatar-stack">
-                <div class="avatar avatar-main">AR</div>
-                <div class="avatar avatar-badge">+43</div>
-              </div>
-            </div>
-          </a>
-
-          <div class="data-footer">
-            <div class="rows-wrap">
+          <footer class="data-footer">
+            <label class="rows-wrap" for="rows-per-page">
               <span>Rows per page</span>
-              <select aria-label="Rows per page">
-                <option selected>16</option>
-                <option>32</option>
-                <option>64</option>
+              <select id="rows-per-page">
+                <option value="8">8</option>
+                <option value="16" selected>16</option>
+                <option value="32">32</option>
               </select>
-            </div>
+            </label>
 
             <div class="pager">
-              <span>API: 10 ms</span>
-              <div class="pager-controls">
-                <button type="button">Previous</button>
-                <button type="button" class="pager-arrow">«</button>
-                <button type="button" class="page-current-btn">1</button>
-                <button type="button" class="pager-arrow">»</button>
-                <button type="button">Next</button>
+              <span class="pagination-summary" id="pagination-summary" aria-live="polite">0-0 of 0</span>
+              <div class="pager-controls" aria-label="Batch list pagination">
+                <button type="button" data-page="previous" aria-label="Previous page" title="Previous page" disabled>&larr;</button>
+                <span class="page-indicator" id="page-indicator" aria-current="page">1 / 1</span>
+                <button type="button" data-page="next" aria-label="Next page" title="Next page" disabled>&rarr;</button>
               </div>
             </div>
-          </div>
+          </footer>
         </section>
       </main>
     </div>
+
+    <template id="batch-card-template">
+      <a class="batch-list-card batch-list-link" href="batch.html">
+        <div class="batch-card-heading">
+          <h2 data-field="name"></h2>
+          <span class="batch-status-pill"><span class="batch-status-dot"></span><span data-field="status"></span></span>
+        </div>
+        <dl class="batch-metadata">
+          <div><dt>Grade</dt><dd data-field="grade"></dd></div>
+          <div><dt>Curriculum</dt><dd data-field="curriculum"></dd></div>
+          <div><dt>Section</dt><dd data-field="section"></dd></div>
+        </dl>
+        <div class="batch-subject-section">
+          <h3>Subjects</h3>
+          <div class="batch-tags" data-field="subjects"></div>
+        </div>
+        <div class="batch-foot">
+          <span class="teacher-avatar" data-field="teacher" aria-hidden="true"></span>
+          <span class="member-count" data-field="members"></span>
+          <span class="batch-card-open">Open batch <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+    </template>
 
     <script src="script.js"></script>
   </body>
