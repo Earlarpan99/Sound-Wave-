@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -70,12 +71,6 @@
             <button class="reset-search" type="button" hidden>Clear search</button>
           </div>
 
-          <div class="batch-load-error" id="batch-load-error" role="alert" hidden>
-            <strong>We couldn’t load batches.</strong>
-            <p>Please try again.</p>
-            <button class="reset-search" type="button" data-retry>Retry</button>
-          </div>
-
           <footer class="data-footer">
             <label class="rows-wrap" for="rows-per-page">
               <span>Rows per page</span>
@@ -103,21 +98,7 @@
       <a class="batch-list-card batch-list-link" href="batch.html">
         <div class="batch-card-heading">
           <h2 data-field="name"></h2>
-          <span class="batch-status-pill"><span class="batch-status-dot"></span><span data-field="status"></span></span>
-        </div>
-        <dl class="batch-metadata">
-          <div><dt>Grade</dt><dd data-field="grade"></dd></div>
-          <div><dt>Curriculum</dt><dd data-field="curriculum"></dd></div>
-          <div><dt>Section</dt><dd data-field="section"></dd></div>
-        </dl>
-        <div class="batch-subject-section">
-          <h3>Subjects</h3>
-          <div class="batch-tags" data-field="subjects"></div>
-        </div>
-        <div class="batch-foot">
-          <span class="teacher-avatar" data-field="teacher" aria-hidden="true"></span>
-          <span class="member-count" data-field="members"></span>
-          <span class="batch-card-open">Open batch <span aria-hidden="true">&rarr;</span></span>
+          <span class="batch-card-open" aria-hidden="true">&rarr;</span>
         </div>
       </a>
     </template>

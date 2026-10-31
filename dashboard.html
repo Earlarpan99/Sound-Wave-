@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -29,27 +30,31 @@
           </div>
         </div>
 
-        <nav class="sidebar-nav" aria-label="Main navigation">
+        <button class="batch-nav-toggle dashboard-nav-toggle" type="button" aria-expanded="false" aria-controls="dashboard-navigation-items">
+          <span>Main navigation</span>
+          <span class="batch-nav-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <nav class="sidebar-nav" id="dashboard-navigation-items" aria-label="Main navigation">
           <div class="nav-section-label">Navigation menu</div>
 
           <div class="nav-section">
-            <a class="nav-item active" href="#">
+            <a class="nav-item active" href="dashboard.html" aria-current="page">
               <span class="nav-icon dashboard-icon" aria-hidden="true"></span>
               <span>Dashboard</span>
             </a>
-            <a class="nav-item" href="#">
+            <a class="nav-item" href="assignments.html">
               <span class="nav-icon material-icon" aria-hidden="true"></span>
               <span>Assignments</span>
             </a>
-            <a class="nav-item" href="#">
+            <a class="nav-item" href="announcements.html">
               <span class="nav-icon timetable-icon" aria-hidden="true"></span>
               <span>Announcements</span>
             </a>
-            <a class="nav-item" href="#">
+            <a class="nav-item" href="videos.html">
               <span class="nav-icon societies-icon" aria-hidden="true"></span>
               <span>Videos</span>
             </a>
-            <a class="nav-item" href="#">
+            <a class="nav-item" href="files.html">
               <span class="nav-icon events-icon" aria-hidden="true"></span>
               <span>Files</span>
             </a>
@@ -60,24 +65,24 @@
       <main class="main-panel batch-page">
         <header class="topbar">
           <nav class="header-actions" aria-label="Primary actions">
-            <a href="#" class="header-action">Chat</a>
-            <a href="#" class="header-action">Call</a>
-            <a href="#" class="header-action">Account Settings</a>
+            <button type="button" class="header-action" disabled title="Chat will be available when connected">Chat</button>
+            <button type="button" class="header-action" disabled title="Calling will be available when connected">Call</button>
+            <button type="button" class="header-action" disabled title="Account settings are not connected yet">Account Settings</button>
           </nav>
 
-          <div class="search-box">
+          <label class="search-box" for="dashboard-batch-search">
             <span class="search-icon" aria-hidden="true">⌕</span>
-            <span>Search courses, PYQs, societies...</span>
+            <input id="dashboard-batch-search" class="dashboard-search-input" type="search" placeholder="Search batches" autocomplete="off" />
             <kbd>/</kbd>
-          </div>
+          </label>
         </header>
 
         <div class="batch-header">
           <h1>Batches</h1>
           <div class="batch-top-actions">
-            <a class="small-action" href="#">Back to Home</a>
-            <a class="small-action" href="#">Create Batch</a>
-            <a class="small-action" href="#">Delete Batches</a>
+            <a class="small-action" href="index.html">Back to Home</a>
+            <button class="small-action" type="button" disabled title="Batch creation is not connected yet">Create Batch</button>
+            <button class="small-action" type="button" disabled title="Batch management is not connected yet">Delete Batches</button>
           </div>
         </div>
 
@@ -142,6 +147,7 @@
             <span class="batch-pill">Review</span>
           </a>
         </section>
+        <p class="dashboard-search-empty" role="status" hidden>No batches match your search.</p>
       </main>
     </div>
 

@@ -1,6 +1,3 @@
-const yearEl = document.getElementById('year');
-const form = document.getElementById('signup-form');
-
 document.addEventListener('keydown', (event) => {
   if (!event.ctrlKey || event.key.toLowerCase() !== 'g') return;
 
@@ -45,42 +42,25 @@ document.addEventListener('keydown', (event) => {
   dialog.querySelector('input').focus();
 });
 
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
-
-if (form) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const emailInput = form.querySelector('input[type="email"]');
-    const button = form.querySelector('button');
-
-    if (!emailInput) return;
-
-    button.textContent = 'You’re in!';
-    button.disabled = true;
-    emailInput.value = '';
-    emailInput.placeholder = 'Thanks for joining';
-  });
-}
-
 const batchesPage = document.querySelector('[data-batches-page]');
 
 if (batchesPage) {
   initializeBatchesPage(batchesPage);
 }
 
-const batchNavigationToggle = document.querySelector('.batch-nav-toggle');
-const batchSidebar = document.querySelector('.batch-sidebar');
+document.querySelectorAll('.batch-nav-toggle').forEach((navigationToggle) => {
+  const sidebar = navigationToggle.closest('aside');
+  const navigation = document.getElementById(navigationToggle.getAttribute('aria-controls'));
 
-if (batchNavigationToggle && batchSidebar) {
-  batchNavigationToggle.addEventListener('click', () => {
-    const isExpanded = batchNavigationToggle.getAttribute('aria-expanded') === 'true';
-    batchNavigationToggle.setAttribute('aria-expanded', String(!isExpanded));
-    batchSidebar.classList.toggle('is-open', !isExpanded);
-    batchNavigationToggle.querySelector('.batch-nav-toggle-icon').textContent = isExpanded ? '+' : '\u2212';
+  if (!sidebar || !navigation) return;
+
+  navigationToggle.addEventListener('click', () => {
+    const isExpanded = navigationToggle.getAttribute('aria-expanded') === 'true';
+    navigationToggle.setAttribute('aria-expanded', String(!isExpanded));
+    sidebar.classList.toggle('is-open', !isExpanded);
+    navigationToggle.querySelector('.batch-nav-toggle-icon').textContent = isExpanded ? '+' : '\u2212';
   });
-}
+});
 
 const announcementItems = document.querySelectorAll('.batch-side-panel .announcement-item');
 const announcementEmptyState = document.querySelector('.announcement-empty-state');
@@ -89,81 +69,63 @@ if (announcementEmptyState) {
   announcementEmptyState.hidden = announcementItems.length > 0;
 }
 
-const scheduleTabs = document.querySelectorAll('.schedule-day');
+const dashboardBatchSearch = document.querySelector('#dashboard-batch-search');
+
+if (dashboardBatchSearch) {
+  const dashboardBatchGrid = document.querySelector('.batch-grid');
+  const dashboardBatchCards = dashboardBatchGrid.querySelectorAll('.batch-card');
+  const dashboardEmptyState = document.querySelector('.dashboard-search-empty');
+
+  dashboardBatchSearch.addEventListener('input', () => {
+    const query = dashboardBatchSearch.value.trim().toLocaleLowerCase();
+    let visibleCardCount = 0;
+
+    dashboardBatchCards.forEach((card) => {
+      const matches = card.textContent.toLocaleLowerCase().includes(query);
+      card.hidden = !matches;
+      if (matches) visibleCardCount += 1;
+    });
+
+    dashboardBatchGrid.hidden = visibleCardCount === 0;
+    dashboardEmptyState.hidden = visibleCardCount > 0;
+  });
+
+  document.addEventListener('keydown', (event) => {
+    const target = event.target;
+    const isTyping = target instanceof HTMLElement
+      && (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName));
+
+    if (event.key === '/' && !isTyping && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      event.preventDefault();
+      dashboardBatchSearch.focus();
+    }
+
+    if (event.key === 'Escape' && event.target === dashboardBatchSearch && dashboardBatchSearch.value) {
+      dashboardBatchSearch.value = '';
+      dashboardBatchSearch.dispatchEvent(new Event('input'));
+    }
+  });
+}
+
 const scheduleGrid = document.querySelector('.schedule-grid');
 const scheduleEmptyState = document.querySelector('#schedule-empty-state');
 
-if (scheduleTabs.length && scheduleGrid && scheduleEmptyState) {
+if (scheduleGrid && scheduleEmptyState) {
   const scheduleSessions = scheduleGrid.querySelectorAll('.session-card');
-
-  function showScheduleDay(day, selectedTab) {
-    let visibleSessions = 0;
-
-    scheduleSessions.forEach((session) => {
-      const isVisible = session.dataset.day === day;
-      session.hidden = !isVisible;
-      if (isVisible) visibleSessions += 1;
-    });
-
-    scheduleTabs.forEach((tab) => {
-      const isSelected = tab === selectedTab;
-      tab.classList.toggle('active', isSelected);
-      tab.setAttribute('aria-selected', String(isSelected));
-      tab.tabIndex = isSelected ? 0 : -1;
-    });
-
-    selectedTab.focus();
-    scheduleGrid.hidden = visibleSessions === 0;
-    scheduleEmptyState.hidden = visibleSessions > 0;
-    scheduleGrid.setAttribute('aria-labelledby', selectedTab.id);
-  }
-
-  scheduleTabs.forEach((tab, tabIndex) => {
-    tab.addEventListener('click', () => showScheduleDay(tab.dataset.day, tab));
-
-    tab.addEventListener('keydown', (event) => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      const nextIndex = event.key === 'Home'
-        ? 0
-        : event.key === 'End'
-          ? scheduleTabs.length - 1
-          : (tabIndex + (event.key === 'ArrowRight' ? 1 : -1) + scheduleTabs.length) % scheduleTabs.length;
-      const nextTab = scheduleTabs[nextIndex];
-      showScheduleDay(nextTab.dataset.day, nextTab);
-    });
-  });
+  scheduleGrid.hidden = scheduleSessions.length === 0;
+  scheduleEmptyState.hidden = scheduleSessions.length > 0;
 }
 
 function initializeBatchesPage(pageRoot) {
   const batchRecords = [
     {
-      name: 'G6 B1_Cambridge HS_2026-27',
-      grade: 'Grade 6',
-      curriculum: 'IGCSE',
-      section: 'G6 B1',
+      name: 'Sound Wave Default',
       status: 'active',
-      subjects: [
-        'Hindi',
-        'Social Studies',
-        'Global Perspective',
-        'French',
-        'Maths',
-        'ICT',
-        'Science',
-        'Marathi',
-        'Arts',
-        'English',
-        'Financial Literacy',
-      ],
-      teacher: 'AR',
-      members: 44,
       href: 'batch.html',
     },
   ];
   const results = pageRoot.querySelector('#batch-results');
   const emptyState = pageRoot.querySelector('#batch-empty-state');
-  const errorState = pageRoot.querySelector('#batch-load-error');
   const cardTemplate = document.querySelector('#batch-card-template');
   const searchInput = pageRoot.querySelector('#batch-search');
   const clearSearchButton = pageRoot.querySelector('.clear-search');
@@ -182,25 +144,10 @@ function initializeBatchesPage(pageRoot) {
 
   function createBatchCard(batch) {
     const batchCard = cardTemplate.content.firstElementChild.cloneNode(true);
-    const statusPill = batchCard.querySelector('.batch-status-pill');
-    const subjects = batchCard.querySelector('[data-field="subjects"]');
 
     batchCard.href = batch.href;
-    batchCard.setAttribute('aria-label', `Open ${batch.name}, ${batch.members} members, ${batch.status}`);
+    batchCard.setAttribute('aria-label', `Open batch ${batch.name}`);
     batchCard.querySelector('[data-field="name"]').textContent = batch.name;
-    batchCard.querySelector('[data-field="grade"]').textContent = batch.grade;
-    batchCard.querySelector('[data-field="curriculum"]').textContent = batch.curriculum;
-    batchCard.querySelector('[data-field="section"]').textContent = batch.section;
-    batchCard.querySelector('[data-field="status"]').textContent = batch.status === 'active' ? 'Active' : 'Inactive';
-    batchCard.querySelector('[data-field="teacher"]').textContent = batch.teacher;
-    batchCard.querySelector('[data-field="members"]').textContent = `${batch.members} members`;
-    statusPill.dataset.status = batch.status;
-
-    batch.subjects.forEach((subject) => {
-      const badge = document.createElement('span');
-      badge.textContent = subject;
-      subjects.append(badge);
-    });
 
     return batchCard;
   }
@@ -210,7 +157,7 @@ function initializeBatchesPage(pageRoot) {
 
     return batches.filter((batch) => {
       const matchesStatus = batch.status === activeStatus;
-      const searchableText = `${batch.name} ${batch.section} ${batch.grade} ${batch.curriculum}`.toLocaleLowerCase();
+      const searchableText = batch.name.toLocaleLowerCase();
       return matchesStatus && (!normalizedSearch || searchableText.includes(normalizedSearch));
     });
   }
@@ -249,7 +196,6 @@ function initializeBatchesPage(pageRoot) {
     results.hidden = !hasResults;
     results.setAttribute('aria-busy', 'false');
     emptyState.hidden = hasResults;
-    errorState.hidden = true;
     pageRoot.querySelector('.data-footer').hidden = false;
     clearSearchButton.hidden = !hasSearch;
     resetSearchButton.hidden = !hasSearch;
@@ -272,36 +218,10 @@ function initializeBatchesPage(pageRoot) {
     });
   }
 
-  function showLoading() {
-    results.hidden = false;
-    results.setAttribute('aria-busy', 'true');
-    results.innerHTML = `
-      <div class="batch-skeleton" aria-hidden="true">
-        <span class="skeleton-line skeleton-title"></span>
-        <span class="skeleton-line skeleton-meta"></span>
-        <span class="skeleton-line skeleton-meta-short"></span>
-        <div class="skeleton-badges"><i></i><i></i><i></i><i></i></div>
-        <span class="skeleton-line skeleton-footer"></span>
-      </div>`;
-    emptyState.hidden = true;
-    errorState.hidden = true;
-    pageRoot.querySelector('.data-footer').hidden = true;
-  }
-
-  async function loadBatches() {
-    showLoading();
-
-    try {
-      batches = await Promise.resolve(batchRecords);
-      currentPage = 1;
-      render();
-    } catch (error) {
-      results.hidden = true;
-      results.setAttribute('aria-busy', 'false');
-      emptyState.hidden = true;
-      errorState.hidden = false;
-      pageRoot.querySelector('.data-footer').hidden = true;
-    }
+  function loadBatches() {
+    batches = batchRecords;
+    currentPage = 1;
+    render();
   }
 
   searchInput.addEventListener('input', () => {
@@ -361,8 +281,6 @@ function initializeBatchesPage(pageRoot) {
       render();
     });
   });
-
-  pageRoot.querySelector('[data-retry]').addEventListener('click', loadBatches);
 
   document.addEventListener('keydown', (event) => {
     const isTyping = event.target instanceof HTMLElement

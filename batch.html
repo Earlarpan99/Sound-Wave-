@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="batch-body">
@@ -40,128 +41,65 @@
             <span class="nav-icon icon-videos" aria-hidden="true"></span>
             <span>Videos</span>
           </a>
+          <a class="nav-entry" href="files.html">
+            <span class="nav-icon icon-material" aria-hidden="true"></span>
+            <span>Files</span>
+          </a>
         </nav>
       </aside>
 
       <main class="batch-main">
-        <a class="small-action batch-back-link" href="index.html">&larr; Back to Homepage</a>
+        <div class="batch-detail-topbar">
+          <a class="small-action batch-back-link" href="index.html">&larr; Back to Homepage</a>
+          <nav class="header-actions" aria-label="Account actions">
+            <button type="button" class="header-action" disabled title="Chat will be available when connected">Chat</button>
+            <button type="button" class="header-action" disabled title="Calling will be available when connected">Call</button>
+            <button type="button" class="header-action" disabled title="Account settings are not connected yet">Account Settings</button>
+          </nav>
+        </div>
 
         <section class="batch-overview-card">
-          <h1 id="batch-title">G6 B1_Cambridge HS_2026-27</h1>
-
-          <div class="meta-grid">
-            <div class="meta-item">
-              <span class="meta-label">Batch Start Date</span>
-              <strong>1 June 2025</strong>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">GB Code</span>
-              <strong>G6 B1</strong>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Sub-Category</span>
-              <strong>IGCSE</strong>
-            </div>
-            <div class="meta-item full-width">
-              <span class="meta-label">Subject</span>
-              <div class="subject-tags">
-                <span>Hindi</span>
-                <span>Social Studies</span>
-                <span>Global Perspective</span>
-                <span>French</span>
-                <span>Maths</span>
-                <span>ICT</span>
-                <span>Science</span>
-                <span>Marathi</span>
-                <span>Arts</span>
-                <span>English</span>
-              </div>
-            </div>
-          </div>
+          <h1 id="batch-title">Sound Wave Default</h1>
         </section>
 
         <section class="batch-schedule-card">
           <h2>Batch Timings</h2>
 
-          <div class="schedule-days" role="tablist" aria-label="Select a weekday">
-            <button class="schedule-day" id="sunday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="sunday">Sun</button>
-            <button class="schedule-day" id="monday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="monday">Mon</button>
-            <button class="schedule-day" id="tuesday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="tuesday">Tue</button>
-            <button class="schedule-day" id="wednesday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="wednesday">Wed</button>
-            <button class="schedule-day" id="thursday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="thursday">Thu</button>
-            <button class="schedule-day active" id="friday-tab" type="button" role="tab" aria-selected="true" aria-controls="schedule-content" data-day="friday">Fri</button>
-            <button class="schedule-day" id="saturday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="saturday">Sat</button>
+          <div class="schedule-grid" id="schedule-content" aria-label="Class schedule">
+            <article class="session-card weekly-class-card">
+              <header class="weekly-class-header">
+                <div>
+                  <span class="weekly-class-frequency">Pending admin setup</span>
+                  <h3>Class schedule</h3>
+                </div>
+              </header>
+              <dl class="weekly-class-details">
+                <div>
+                  <dt>Teacher</dt>
+                  <dd>To be assigned</dd>
+                </div>
+                <div>
+                  <dt>Day</dt>
+                  <dd>To be scheduled</dd>
+                </div>
+                <div>
+                  <dt>Time</dt>
+                  <dd>To be set</dd>
+                </div>
+              </dl>
+            </article>
           </div>
-
-          <div class="schedule-grid" id="schedule-content" role="tabpanel" aria-labelledby="friday-tab">
-            <div class="session-card" data-day="friday">
-              <div class="session-subject">Global Perspective</div>
-              <div class="session-time">8:20 AM - 9:10 AM</div>
-              <div class="session-teacher">
-                <span class="teacher-badge">SF</span>
-                <span class="teacher-name">Sohra Fatima</span>
-              </div>
-            </div>
-            <div class="session-card" data-day="friday">
-              <div class="session-subject">Maths</div>
-              <div class="session-time">9:20 AM - 10:00 AM</div>
-              <div class="session-teacher">
-                <span class="teacher-badge">RG</span>
-                <span class="teacher-name">Roja Gadagoju</span>
-              </div>
-            </div>
-            <div class="session-card" data-day="friday">
-              <div class="session-subject">Maths</div>
-              <div class="session-time">10:10 AM - 10:50 AM</div>
-              <div class="session-teacher">
-                <span class="teacher-badge">RG</span>
-                <span class="teacher-name">Roja Gadagoju</span>
-              </div>
-            </div>
-            <div class="session-card" data-day="friday">
-              <div class="session-subject">Science</div>
-              <div class="session-time">11:10 AM - 11:50 AM</div>
-              <div class="session-teacher">
-                <span class="teacher-badge">VK</span>
-                <span class="teacher-name">Viola Kataria</span>
-              </div>
-            </div>
-            <div class="session-card" data-day="friday">
-              <div class="session-subject">English</div>
-              <div class="session-time">12:00 PM - 12:40 PM</div>
-              <div class="session-teacher">
-                <span class="teacher-badge">KN</span>
-                <span class="teacher-name">Kirti Narang</span>
-              </div>
-            </div>
-          </div>
-          <div class="schedule-empty-state" id="schedule-empty-state" role="status" hidden>
-            <strong>No classes scheduled</strong>
-            <span>There are no classes on this weekday.</span>
+          <div class="schedule-empty-state" id="schedule-empty-state" role="status">
+            <strong>Schedule not configured</strong>
+            <span>An administrator will set class availability.</span>
           </div>
         </section>
       </main>
 
       <aside class="batch-side-panel">
         <div class="panel-box">
-          <h3>Zoom Classes</h3>
-          <div class="join-box">
-            <p>Join your Zoom class and send notifications to students</p>
-            <button type="button">Join Class</button>
-            <button class="secondary" type="button">Join BRAINVERSE</button>
-          </div>
-        </div>
-
-        <div class="panel-box">
           <h3>Recent Announcements</h3>
-          <div class="announcement-item">
-            <div class="announcement-icon">✦</div>
-            <div class="announcement-text">
-              <strong>BIRLA BRAINIACS P</strong>
-              <span>Resents: Robotics &amp; STEM - H...</span>
-            </div>
-          </div>
-          <p class="announcement-empty-state" hidden>No recent announcements.</p>
+          <p class="announcement-empty-state" hidden>Admin announcements will appear here when available.</p>
           <a class="view-all" href="announcements.html">View All</a>
         </div>
       </aside>
