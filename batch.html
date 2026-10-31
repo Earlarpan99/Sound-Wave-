@@ -19,8 +19,12 @@
   <body class="batch-body">
     <div class="batch-layout">
       <aside class="batch-sidebar">
-        <nav class="side-nav" aria-label="Batch navigation">
-          <a class="nav-entry active" href="batch.html">
+        <button class="batch-nav-toggle" type="button" aria-expanded="false" aria-controls="batch-navigation-items">
+          <span>Batch navigation</span>
+          <span class="batch-nav-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <nav class="side-nav" id="batch-navigation-items" aria-label="Batch navigation">
+          <a class="nav-entry active" href="batch.html" aria-current="page">
             <span class="nav-icon icon-overview" aria-hidden="true"></span>
             <span>Overview</span>
           </a>
@@ -55,30 +59,22 @@
               <strong>G6 B1</strong>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Category</span>
-              <strong>Not Available</strong>
-            </div>
-            <div class="meta-item">
               <span class="meta-label">Sub-Category</span>
               <strong>IGCSE</strong>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Course</span>
-              <strong>Not Available</strong>
             </div>
             <div class="meta-item full-width">
               <span class="meta-label">Subject</span>
               <div class="subject-tags">
-                <span>HINDI</span>
-                <span>SOCIAL STUDIES</span>
-                <span>GLOBAL PERSPECTIVE</span>
-                <span>FRENCH</span>
-                <span>MATHS</span>
+                <span>Hindi</span>
+                <span>Social Studies</span>
+                <span>Global Perspective</span>
+                <span>French</span>
+                <span>Maths</span>
                 <span>ICT</span>
-                <span>SCIENCE</span>
-                <span>MARATHI</span>
-                <span>ARTS</span>
-                <span>ENGLISH</span>
+                <span>Science</span>
+                <span>Marathi</span>
+                <span>Arts</span>
+                <span>English</span>
               </div>
             </div>
           </div>
@@ -87,47 +83,61 @@
         <section class="batch-schedule-card">
           <h2>Batch Timings</h2>
 
-          <div class="schedule-days">
-            <span>SUNDAY</span>
-            <span>MONDAY</span>
-            <span>TUESDAY</span>
-            <span>WEDNESDAY</span>
-            <span>THURSDAY</span>
-            <span class="active">FRIDAY</span>
-            <span>SATURDAY</span>
+          <div class="schedule-days" role="tablist" aria-label="Select a weekday">
+            <button class="schedule-day" id="sunday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="sunday">Sun</button>
+            <button class="schedule-day" id="monday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="monday">Mon</button>
+            <button class="schedule-day" id="tuesday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="tuesday">Tue</button>
+            <button class="schedule-day" id="wednesday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="wednesday">Wed</button>
+            <button class="schedule-day" id="thursday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="thursday">Thu</button>
+            <button class="schedule-day active" id="friday-tab" type="button" role="tab" aria-selected="true" aria-controls="schedule-content" data-day="friday">Fri</button>
+            <button class="schedule-day" id="saturday-tab" type="button" role="tab" aria-selected="false" aria-controls="schedule-content" data-day="saturday">Sat</button>
           </div>
 
-          <div class="schedule-grid">
-            <div class="session-card">
+          <div class="schedule-grid" id="schedule-content" role="tabpanel" aria-labelledby="friday-tab">
+            <div class="session-card" data-day="friday">
               <div class="session-subject">Global Perspective</div>
               <div class="session-time">8:20 AM - 9:10 AM</div>
-              <div class="teacher-badge">SF</div>
-              <div class="teacher-name">Sohra Fatima</div>
+              <div class="session-teacher">
+                <span class="teacher-badge">SF</span>
+                <span class="teacher-name">Sohra Fatima</span>
+              </div>
             </div>
-            <div class="session-card">
+            <div class="session-card" data-day="friday">
               <div class="session-subject">Maths</div>
               <div class="session-time">9:20 AM - 10:00 AM</div>
-              <div class="teacher-badge">RG</div>
-              <div class="teacher-name">Roja Gadagoju</div>
+              <div class="session-teacher">
+                <span class="teacher-badge">RG</span>
+                <span class="teacher-name">Roja Gadagoju</span>
+              </div>
             </div>
-            <div class="session-card">
+            <div class="session-card" data-day="friday">
               <div class="session-subject">Maths</div>
               <div class="session-time">10:10 AM - 10:50 AM</div>
-              <div class="teacher-badge">RG</div>
-              <div class="teacher-name">Roja Gadagoju</div>
+              <div class="session-teacher">
+                <span class="teacher-badge">RG</span>
+                <span class="teacher-name">Roja Gadagoju</span>
+              </div>
             </div>
-            <div class="session-card">
+            <div class="session-card" data-day="friday">
               <div class="session-subject">Science</div>
               <div class="session-time">11:10 AM - 11:50 AM</div>
-              <div class="teacher-badge">VK</div>
-              <div class="teacher-name">Viola Kataria</div>
+              <div class="session-teacher">
+                <span class="teacher-badge">VK</span>
+                <span class="teacher-name">Viola Kataria</span>
+              </div>
             </div>
-            <div class="session-card">
+            <div class="session-card" data-day="friday">
               <div class="session-subject">English</div>
               <div class="session-time">12:00 PM - 12:40 PM</div>
-              <div class="teacher-badge">KN</div>
-              <div class="teacher-name">Kirti Narang</div>
+              <div class="session-teacher">
+                <span class="teacher-badge">KN</span>
+                <span class="teacher-name">Kirti Narang</span>
+              </div>
             </div>
+          </div>
+          <div class="schedule-empty-state" id="schedule-empty-state" role="status" hidden>
+            <strong>No classes scheduled</strong>
+            <span>There are no classes on this weekday.</span>
           </div>
         </section>
       </main>
@@ -137,8 +147,8 @@
           <h3>Zoom Classes</h3>
           <div class="join-box">
             <p>Join your Zoom class and send notifications to students</p>
-            <button>Join Class</button>
-            <button class="secondary">Join BRAINVERSE</button>
+            <button type="button">Join Class</button>
+            <button class="secondary" type="button">Join BRAINVERSE</button>
           </div>
         </div>
 
@@ -151,6 +161,7 @@
               <span>Resents: Robotics &amp; STEM - H...</span>
             </div>
           </div>
+          <p class="announcement-empty-state" hidden>No recent announcements.</p>
           <a class="view-all" href="announcements.html">View All</a>
         </div>
       </aside>

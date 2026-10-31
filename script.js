@@ -70,6 +70,71 @@ if (batchesPage) {
   initializeBatchesPage(batchesPage);
 }
 
+const batchNavigationToggle = document.querySelector('.batch-nav-toggle');
+const batchSidebar = document.querySelector('.batch-sidebar');
+
+if (batchNavigationToggle && batchSidebar) {
+  batchNavigationToggle.addEventListener('click', () => {
+    const isExpanded = batchNavigationToggle.getAttribute('aria-expanded') === 'true';
+    batchNavigationToggle.setAttribute('aria-expanded', String(!isExpanded));
+    batchSidebar.classList.toggle('is-open', !isExpanded);
+    batchNavigationToggle.querySelector('.batch-nav-toggle-icon').textContent = isExpanded ? '+' : '\u2212';
+  });
+}
+
+const announcementItems = document.querySelectorAll('.batch-side-panel .announcement-item');
+const announcementEmptyState = document.querySelector('.announcement-empty-state');
+
+if (announcementEmptyState) {
+  announcementEmptyState.hidden = announcementItems.length > 0;
+}
+
+const scheduleTabs = document.querySelectorAll('.schedule-day');
+const scheduleGrid = document.querySelector('.schedule-grid');
+const scheduleEmptyState = document.querySelector('#schedule-empty-state');
+
+if (scheduleTabs.length && scheduleGrid && scheduleEmptyState) {
+  const scheduleSessions = scheduleGrid.querySelectorAll('.session-card');
+
+  function showScheduleDay(day, selectedTab) {
+    let visibleSessions = 0;
+
+    scheduleSessions.forEach((session) => {
+      const isVisible = session.dataset.day === day;
+      session.hidden = !isVisible;
+      if (isVisible) visibleSessions += 1;
+    });
+
+    scheduleTabs.forEach((tab) => {
+      const isSelected = tab === selectedTab;
+      tab.classList.toggle('active', isSelected);
+      tab.setAttribute('aria-selected', String(isSelected));
+      tab.tabIndex = isSelected ? 0 : -1;
+    });
+
+    selectedTab.focus();
+    scheduleGrid.hidden = visibleSessions === 0;
+    scheduleEmptyState.hidden = visibleSessions > 0;
+    scheduleGrid.setAttribute('aria-labelledby', selectedTab.id);
+  }
+
+  scheduleTabs.forEach((tab, tabIndex) => {
+    tab.addEventListener('click', () => showScheduleDay(tab.dataset.day, tab));
+
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const nextIndex = event.key === 'Home'
+        ? 0
+        : event.key === 'End'
+          ? scheduleTabs.length - 1
+          : (tabIndex + (event.key === 'ArrowRight' ? 1 : -1) + scheduleTabs.length) % scheduleTabs.length;
+      const nextTab = scheduleTabs[nextIndex];
+      showScheduleDay(nextTab.dataset.day, nextTab);
+    });
+  });
+}
+
 function initializeBatchesPage(pageRoot) {
   const batchRecords = [
     {
